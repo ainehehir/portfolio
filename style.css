@@ -1,0 +1,434 @@
+:root {
+  --clr-primary-400: hsl(24, 100%, 41%);
+  --clr-primary-200: hsl(28, 80%, 52%);
+
+  --clr-neutral-900: hsl(0, 6%, 7%);
+  --clr-neutral-700: hsl(210, 30%, 18%);
+  --clr-neutral-400: hsl(210, 11%, 93%);
+
+  --clr-white: hsl(0, 0%, 100%);
+
+  --ff-sans: "Oswald", sans-serif;
+  --ff-serif: "Source Serif 4", serif;
+  --ff-body: var(--ff-serif);
+  --ff-heading: var(--ff-sans);
+
+  --fw-regular: 400;
+  --fw-semi-bold: 500;
+  --fw-bold: 700;
+
+  --fs-13: 0.812rem;
+  --fs-16: 1rem;
+  --fs-20: 1.25rem;
+  --fs-25: 1.562rem;
+  --fs-31: 1.938rem;
+  --fs-39: 2.438rem;
+  --fs-49: 3.062rem;
+  --fs-61: 3.812rem;
+
+  --fs-hero-heading: var(--fs-49);
+  --fs-hero-sub-heading: var(--fs-39);
+  --fs-section-heading: var(--fs-31);
+  --fs-section-sub-heading: var(--fs-25);
+  --fs-nav: var(--fs-20);
+  --fs-body: var(--fs-16);
+
+  --size-100: 0.25rem;
+  --size-200: 0.5rem;
+  --size-300: 0.75rem;
+  --size-400: 1rem;
+  --size-500: 1.5rem;
+  --size-600: 2rem;
+  --size-700: 3rem;
+  --size-800: 4rem;
+  --size-900: 5rem;
+}
+
+@media (min-width: 47em) {
+  :root {
+    --fs-hero-heading: var(--fs-61);
+    --fs-hero-sub-heading: var(--fs-49);
+    --fs-section-heading: var(--fs-39);
+    --fs-section-sub-heading: var(--fs-31);
+    --fs-body: var(--fs-20);
+  }
+}
+
+/* resets */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+/* a:not([class]) {
+  text-decoration-skip-ink: auto;
+} */
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* General stylings */
+
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  background-color: var(--clr-neutral-400);
+}
+
+/* nav */
+.primary-header {
+  padding-top: var(--size-700);
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: clamp(var(--size-400), 5vw, var(--size-700));
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-semi-bold);
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: var(--clr-neutral-900);
+}
+
+.nav-list a:hover,
+.nav-list a:focus {
+  color: var(--clr-primary-400);
+}
+
+@media (max-width: 47em) {
+  .primary-header[data-overlay] {
+    position: relative;
+    z-index: 999;
+  }
+
+  .primary-navigation {
+    display: none;
+    position: fixed;
+    padding: var(--size-700);
+    inset: 6.6rem var(--size-400) auto;
+    max-width: 25rem;
+    margin-inline: auto;
+    background-color: var(--clr-neutral-400);
+    border-radius: var(--size-100);
+    box-shadow: 0 0 0.75em rgb(0, 0, 0, 0.05);
+  }
+
+  .primary-header[data-overlay]:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(rgb(0 0 0/0), rgb(0 0 0 /0.8));
+  }
+
+  .nav-list {
+    display: grid;
+    gap: var(--size-500);
+    text-align: center;
+    font-weight: var(--fw-bold);
+  }
+
+  .primary-navigation[data-visible] {
+    display: block;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: fixed;
+    top: var(--size-800);
+    right: var(--size-400);
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    padding: 0.5em;
+    width: 1.65rem;
+    aspect-ratio: 1;
+    background-image: url("./images/icons/hamburger.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url("./images/icons/close.svg");
+  }
+}
+
+/* hero section */
+#hero {
+  margin-top: var(--size-700);
+}
+
+.hero__title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-hero-heading);
+  color: var(--clr-primary-400);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.12em;
+}
+
+.hero__heading p {
+  font-family: var(--ff-body);
+  font-size: var(--fs-hero-sub-heading);
+  color: var(--clr-neutral-700);
+  font-weight: var(--fw-semi-bold);
+}
+
+.hero__img {
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+/* portfolio */
+
+.portfolio__item {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio__item:hover {
+  .portfolio__bar {
+    width: 100px;
+  }
+}
+
+.portfolio__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.portfolio__img__link {
+  display: contents;
+}
+
+.portfolio__text {
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio__title {
+  font-size: var(--fs-500);
+}
+
+.portfolio a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.portfolio__subtitle {
+  font-size: var(--fs-100);
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.portfolio__bar {
+  width: 50px;
+  height: 8px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: var(--clr-primary-400);
+  transition: width 0.2s ease;
+}
+
+.portfolio__preview__txt {
+  overflow: hidden;
+  text-align: justify;
+  height: 100%;
+}
+
+.portfolio__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: var(--fs-300);
+  margin: 20px 0 0 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.tag__item {
+  display: inline-block;
+  background: rgba(83, 83, 83, 0.4);
+  border-radius: 3px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+
+@media (min-width: 600px) {
+  .portfolio__item {
+    flex-wrap: inherit;
+  }
+
+  .portfolio__item:nth-child(2n + 1) {
+    flex-direction: row;
+  }
+
+  .portfolio__item:nth-child(2n + 0) {
+    flex-direction: row-reverse;
+  }
+
+  .portfolio__title {
+    font-size: 2rem;
+  }
+
+  .portfolio__tagbox {
+    justify-content: start;
+  }
+
+  .portfolio__img {
+    max-width: 300px;
+    max-height: 100%;
+    transition: transform 0.3s 3ease;
+  }
+
+  .portfolio__img:hover {
+    transform: scale(1.05);
+  }
+
+  .portfolio__text {
+    padding: 3rem;
+    width: 100%;
+  }
+
+  .portfolio__text::before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: var(--clr-neutral-400);
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+
+  .portfolio__item:nth-child(2n + 1) .portfolio__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+
+  .portfolio__item:nth-child(2n + 0) .portfolio__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
+}
+
+/* Utility classes */
+
+.container {
+  --max-width: 1110px;
+  --container-padding: 1rem;
+
+  width: min(var(--max-width), 100% - (var(--container-padding) * 2));
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text__center {
+  text-align: center;
+}
+
+.f-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.section-header {
+  font-size: var(--fs-section-heading);
+  font-weight: var(--fw-semi-bold);
+}
+
+.underline {
+  border-bottom: 4px solid var(--clr-primary-400);
+  border-radius: 2px;
+}
+
+.margin-top-900 {
+  margin-block-start: var(--size-700);
+}
